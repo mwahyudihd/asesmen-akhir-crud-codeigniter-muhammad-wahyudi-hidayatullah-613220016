@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>AdminLTE 3 | Forgot Password</title>
+    <title>DeptWriter | Forgot Password</title>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
@@ -26,7 +26,7 @@
 <body class="hold-transition login-page bg-dark">
     <div class="login-box">
         <div class="login-logo">
-            <a href="<?php echo site_url('home') ?>"><b>Admin</b>LTE</a>
+            <a href="<?php echo site_url('C_index') ?>"><b>Dept</b>Writer</a>
         </div>
         <!-- /.login-logo -->
         <div class="card">
@@ -51,7 +51,7 @@
                 </form>
 
                 <p class="mt-3 mb-1">
-                    <a href="<?php echo site_url('home/index') ?>">Login</a>
+                    <a href="<?php echo site_url('C_index/index') ?>">Login</a>
                 </p>
                 <p class="mb-0">
                     <a href="register.html" class="text-center">Register a new membership</a>

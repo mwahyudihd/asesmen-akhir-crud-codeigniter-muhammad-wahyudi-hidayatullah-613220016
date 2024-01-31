@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>data | Log in (v2)</title>
+    <title>DeptWriter | Log in</title>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
@@ -34,19 +34,20 @@
         <!-- /.login-logo -->
         <div class="card card-outline card-primary card-log">
             <div class="card-header text-center">
-                <a href="<?php echo site_url('home/forget') ?>" class="h1"><b>Admin</b>LTE</a>
+                <a href="<?php echo site_url('C_index/forget') ?>" class="h1"><b>Dept</b>Writer</a>
             </div>
             <div class="card-body">
                 <p class="login-box-msg">Sign in to start your session</p>
                 <?php if ($this->session->flashdata('salah')): ?>
                     <div class="alert alert-danger" role="alert">
+                        <a href="."><i class="fas fa-xmark">X</i></a>
                         Username atau Password Salah!
                     </div>
                 <?php endif ?>
 
-                <form action="<?php echo site_url('home/validasi') ?>" method="post">
+                <form action="<?php echo site_url('C_index/process_login') ?>" method="post">
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="username" name="nm_panggilan">
+                        <input type="text" class="form-control" placeholder="username" name="username">
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-envelope"></span>
@@ -81,10 +82,10 @@
 
 
                 <p class="mb-1">
-                    <a href="<?php echo site_url('home/forget') ?>">I forgot my password</a>
+                    <a href="<?php echo site_url('C_index/forget') ?>" class="text-white">I forgot my password</a>
                 </p>
                 <p class="mb-0">
-                    <a href="register.html" class="text-center">Register a new membership</a>
+                    <a href="<?= site_url('C_index/register') ?>" class="text-center text-white">Register a new membership</a>
                 </p>
             </div>
             <!-- /.card-body -->
@@ -92,6 +93,11 @@
         <!-- /.card -->
     </div>
     <!-- /.login-box -->
+    <?php if ($this->session->flashdata('message')): ?>
+        <script>
+            alert('Harap login terlebih dahulu!');
+        </script>
+    <?php endif; ?>
 
     <!-- jQuery -->
     <script src="<?php echo base_url('assets/plugins/jquery/jquery.min.js') ?>"></script>
