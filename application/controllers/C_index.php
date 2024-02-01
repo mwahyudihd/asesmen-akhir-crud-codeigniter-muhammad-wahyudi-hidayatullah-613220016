@@ -3,13 +3,15 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class C_Index extends CI_Controller
 {
-    public function __construct() {
+    public function __construct() 
+    {
         parent::__construct();
         $this->load->model('Md_users');
         $this->load->model('Md_hutang');
     }
 
-    public function process_login() {
+    public function process_login() 
+    {
         $username = $this->input->post('username');
         $password = md5($this->input->post('password'));
 
@@ -19,12 +21,11 @@ class C_Index extends CI_Controller
         $row = $query->row_array();
 
 
-        if ($user && $user['password'] === $password) {
+        if ($user && $user['password'] === $password) 
+        {
             $this->session->set_userdata('username', $username);
             $this->session->set_userdata('name', $user['nama']);
-            $id_pemilik = $this->session->userdata('id');
-            $data['hutang'] = $this->Md_hutang->getDataHutang($id_pemilik);
-            $this->load->view('dashboard', $data);
+            $this->session->set_userdata('id', $user['id']);
             redirect('C_index/dashboard');
         } else {
             $this->session->set_flashdata('salah', true);
@@ -46,21 +47,34 @@ class C_Index extends CI_Controller
         $this->load->view('forgot-password');
     }
 
-    public function dashboard(){
-        $id_pemilik = $this->session->userdata('id');
-        $data['hutang'] = $this->Md_hutang->getDataHutang($id_pemilik);
-        $DATA = array('queryAllHutang' => $data);
+    public function dashboard()
+    {
+        $queryAllHutang = $this->Md_hutang->getDataHutang();
+        $DATA = array('queryAllHutang' => $queryAllHutang);
         $this->load->view('dashboard', $DATA);
     }
 
-    public function register(){
+    public function register()
+    {
         $this->load->view('register');
     }
 
+    public function new()
+    {
+        $this->load->view('add-data');
+    }
+
+    public function data()
+    {
+        $queryAllHutang = $this->Md_hutang->getDataHutang();
+        $DATA = array('queryAllHutang' => $queryAllHutang);
+        $this->load->view('table', $DATA);
+    }
 
     function logout()
     {
         session_destroy();
         redirect('C_index');
     }
+    
 }

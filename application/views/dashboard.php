@@ -3,7 +3,7 @@
 <!-- content -->
     <div class="card">
         <div class="card-header border-transparent">
-            <h3 class="card-title">Latest Orders</h3>
+            <h3 class="card-title">Data Hutang Anda</h3>
 
             <div class="card-tools">
                 <button type="button" class="btn btn-tool" data-card-widget="collapse">
@@ -37,9 +37,9 @@
                         <tr>
                             <td><?php echo $count; ?></td>
                             <td><?php echo $row->nm_pemberi ?></td>
-                            <td><?php echo $row->jumlah_htg ?></td>
+                            <td>Rp.<?php echo number_format($row->jumlah_htg, 2, ',', '.'); ?></td>
                             <td>
-                                <span class="badge bg-success"><?php echo $row->status ?></span>
+                                <span class="badge <?php if($row->status == 'lunas'){ echo 'bg-success'; } else{ echo 'bg-danger'; } ?>"><?php echo $row->status ?></span>
                             </td>
                             <td><?php echo $row->tgl_hutang ?></td>
                             <td><?php echo $row->tgl_lunas ?></td>
