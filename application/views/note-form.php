@@ -9,30 +9,21 @@
             <!-- jquery validation -->
             <div class="card card-primary">
               <div class="card-header">
-                <h3 class="card-title">Form - Tambah <small>Hutang</small></h3>
+                <h3 class="card-title">Form - Tambah <small>Catatan</small></h3>
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form id="quickForm" method="post" action="<?php echo site_url('C_data/add_action'); ?>">
+              <form id="quickForm" method="post" action="<?php echo site_url('C_data/add_note'); ?>">
                 <div class="card-body">
                     <?php $id_user = $this->session->userdata('id'); ?>
                     <input type="number" value="<?php echo $id_user; ?>" name="id_pemilik" readonly hidden>
                   <div class="form-group">
-                    <label for="nm">Nama Pemberi <small>Hutang</small></label>
-                    <input type="text" name="pemberi" class="form-control" id="" placeholder="Nama Pemberi">
+                    <label for="note">Catatan :</label>
+                    <textarea name="noted" id="" cols="30" rows="10" class="form-control" required></textarea>
                   </div>
-                  <div class="form-group">
-                    <label for="jml">Jumlah <small>Hutang</small></label>
-                    <input type="number" name="jml_hutang" class="form-control" id="" placeholder="Jumlah">
-                  </div>
-                  <div class="form-group">
-                    <label for="tgl">Tanggal <small>berhutang</small></label>
-                    <input type="date" name="tg_hutang" class="form-control" id="" placeholder="Tanggal">
-                  </div>
-                </div>
                 <!-- /.card-body -->
                 <div class="card-footer">
-                  <a href="<?php echo site_url('C_index/dashboard'); ?>" class="btn btn-warning"><i class="fas fa-angle-left"></i> Kembali</a>
+                  <a href="<?php echo site_url('C_index/notes'); ?>" class="btn btn-warning"><i class="fas fa-angle-left"></i> Kembali</a>
                   <button type="submit" class="float-right btn btn-primary">Add <i class="fas fa-file"></i></button>
                 </div>
               </form>

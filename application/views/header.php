@@ -16,7 +16,7 @@
   <!-- Theme style -->
   <link rel="stylesheet" href="<?php echo base_url() ?>assets/dist/css/adminlte.min.css">
   <?php if (isset($_SESSION['name']) == '') {
-    $this->session->set_flashdata('message', true);
+    $this->session->set_flashdata('salah', true);
     redirect('C_index');
     }
   ?>
@@ -48,7 +48,7 @@
     <!-- Main Sidebar Container -->
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
       <!-- Brand Logo -->
-      <a href="index3.html" class="brand-link">
+      <a href="." class="brand-link">
         <img src="<?php echo base_url() ?>assets/dist/img/AdminLTELogo.png" alt="AdminLTE Logo"
           class="brand-image img-circle elevation-3" style="opacity: .8">
         <span class="brand-text font-weight-light">DeptWriter</span>
@@ -82,7 +82,7 @@
               <ul class="nav nav-treeview">
                 <li class="nav-item">
                   <a href="<?= site_url('C_index/new') ?>" class="nav-link">
-                    <i class="fas fa-plus"></i>
+                    <i class="fas fa-plus m-1"></i>
                     <p>
                       Tambah Hutang
                     </p>
@@ -90,24 +90,45 @@
                 </li>
                 <li class="nav-item">
                   <a href="<?= site_url('C_index/data') ?>" class="nav-link">
-                    <i class="fas fa-credit-card"></i>
+                    <i class="fas fa-credit-card m-1"></i>
                     <p>
                       Data Hutang
+                    </p>
+                </a>
+                </li>
+
+                <li class="nav-item">
+                  <a href="<?= site_url('C_index/notes') ?>" class="nav-link">
+                    <i class="fa fa-clipboard m-2"></i>
+                    <p>
+                      Catatan
                     </p>
                 </a>
                 </li>
                 
               </ul>
             </li>
+
+            <?php if($this->session->userdata('id') == 2) { ?>
+              <li class="nav-item">
+                <a href="<?= site_url('C_index/user_manager') ?>" class="nav-link">
+                  <i class="fas fa-user-edit nav-icon"></i>
+                  <p>
+                    Manage User
+                  </p>
+                </a>
+              </li>
+            <?php } ?>
+
             <li class="nav-item" onclick="return confirm('Anda Yakin?')">
               <a href="<?= site_url('C_index/logout') ?>" class="nav-link">
-                <i class="fas fa-angle-left nav-icon"></i>
+                <i class="fas fa-door-open nav-icon"></i>
                 <p>
                   Logout
                 </p>
               </a>
             </li>
-       
+
           </ul>
         </nav>
         <!-- /.sidebar-menu -->

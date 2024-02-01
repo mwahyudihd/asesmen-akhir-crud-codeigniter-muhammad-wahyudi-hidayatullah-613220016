@@ -13,8 +13,16 @@ class Md_hutang extends CI_Model {
         return $query->result();
     }
 
-    public function timestamp_data() {
+    public function timestamp_data() 
+    {
         return date('Y-m-d H:i:s');
+    }
+
+    public function date_time()
+    {
+        $datestring = '%d-%m-%y';
+        $time = time();
+        return strftime($datestring, $time);
     }
 
     function insertData($data)
@@ -39,5 +47,19 @@ class Md_hutang extends CI_Model {
     {
         $this->db->where('id_hutang', $id_hutang);
         $this->db->delete($this->table);
+    }
+
+
+    function get_data_detail($selected_id) 
+    {
+        $this->db->where('id_hutang', $selected_id);
+        $query = $this->db->get($this->table);
+        return $query->row();
+    }
+    
+    function update_data($selected_id, $arr_update) 
+    {
+        $this->db->where('id_hutang', $selected_id);
+        $this->db->update($this->table, $arr_update);
     }
 }

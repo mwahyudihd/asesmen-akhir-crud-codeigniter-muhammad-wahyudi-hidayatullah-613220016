@@ -18,6 +18,7 @@
                     <th>Nama Pemberi</th>
                     <th>Jumlah</th>
                     <th>Status</th>
+                    <th>Tanggal Berhutang</th>
                     <th>Tanggal Buat</th>
                     <th>Tanggal Lunas</th>
                     <th></th>
@@ -36,14 +37,15 @@
                       <td>
                           <span class="badge <?php if($row->status == 'lunas'){ echo 'bg-success'; } else{ echo 'bg-danger'; } ?>"><?php echo $row->status ?></span>
                       </td>
+                      <td><?php echo $row->tg_hutang ?></td>
                       <td><?php echo $row->tgl_hutang ?></td>
                       <td><?php if($row->tgl_lunas != NULL) { 
                           echo $row->tgl_lunas; 
                       }else {
                           echo 'Hutang Anda Belum Lunas!';
                       } ?></td>
-                      <td>
-                          <a href="" class="btn btn-warning"><i class="fas fa-pen"></i> Edit</a>
+                      <td class="d-flex">
+                          <a href="<?php echo site_url('C_data/dir_edit') ?>/<?php echo $row->id_hutang ?>" class="btn btn-warning"><i class="fas fa-pen"></i> Edit</a>
                             <?php if($row->status == 'belum') { ?>
                           <a href="<?php echo site_url('C_data/send_status') ?>/<?php echo $row->id_hutang ?>" class="float-center btn btn-primary" onclick="return confirm('Anda Yakin Hutang Anda lunas?')"><i class="fas fa-check"></i> Lunas</a>
                           <?php }else{ ?>

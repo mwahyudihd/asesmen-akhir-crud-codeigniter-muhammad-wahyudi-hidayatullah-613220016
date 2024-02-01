@@ -8,6 +8,7 @@ class C_Index extends CI_Controller
         parent::__construct();
         $this->load->model('Md_users');
         $this->load->model('Md_hutang');
+        $this->load->model('Md_catatan');
     }
 
     public function process_login() 
@@ -49,9 +50,10 @@ class C_Index extends CI_Controller
 
     public function dashboard()
     {
+        $dat['time_data'] = $this->Md_hutang->date_time();
         $queryAllHutang = $this->Md_hutang->getDataHutang();
         $DATA = array('queryAllHutang' => $queryAllHutang);
-        $this->load->view('dashboard', $DATA);
+        $this->load->view('dashboard', $DATA + $dat);
     }
 
     public function register()
@@ -77,4 +79,30 @@ class C_Index extends CI_Controller
         redirect('C_index');
     }
     
+    public function notes()
+    {
+        $query_note = $this->Md_catatan->get_note();
+        $data = array('is_noted' => $query_note);
+        $this->load->view('note', $data);
+    }
+
+    public function user_manager()
+    {
+        $queryAllUser = $this->Md_users->query_users();
+        $data = array('queryAllUser' => $queryAllUser);
+        $this->load->view('manage-user', $data);
+    }
+
+    function del_user($id_user)
+    {
+        $this->Md_users->del_row($id_user);
+        $this->session->set_flashdata('success', true);
+        redirect(site_url('C_index/user_manager'));
+    }
+
+
+    function new_note()
+    {
+        $this->load->view('note-form');
+    }
 }

@@ -40,14 +40,21 @@
                 <p class="login-box-msg">Sign in to start your session</p>
                 <?php if ($this->session->flashdata('salah')): ?>
                     <div class="alert alert-danger" role="alert">
-                        <a href="."><i class="fas fa-xmark">X</i></a>
+                        <a href="."><i class="fas fa-times-circle"></i></a>
                         Username atau Password Salah!
+                    </div>
+                <?php endif ?>
+
+                <?php if ($this->session->flashdata('success')): ?>
+                    <div class="alert alert-info" role="alert">
+                        <a href="."><i class="fas fa-times-circle"></i></a>
+                        Akun Berhasil dibuat! Silahkan Login...
                     </div>
                 <?php endif ?>
 
                 <form action="<?php echo site_url('C_index/process_login') ?>" method="post">
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="username" name="username">
+                        <input type="text" class="form-control" placeholder="username" name="username" required>
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-envelope"></span>
@@ -65,12 +72,9 @@
                     </div>
                     <div class="row">
                         <div class="col-8">
-                            <div class="icheck-primary">
-                                <input type="checkbox" id="remember">
-                                <label for="remember">
-                                    Remember Me
-                                </label>
-                            </div>
+                            <p class="mb-0">
+                                <a href="<?= site_url('C_index/register') ?>" class="text-center text-white">Register a new membership</a>
+                            </p>                            
                         </div>
                         <!-- /.col -->
                         <div class="col-4">
@@ -81,12 +85,6 @@
                 </form>
 
 
-                <p class="mb-1">
-                    <a href="<?php echo site_url('C_index/forget') ?>" class="text-white">I forgot my password</a>
-                </p>
-                <p class="mb-0">
-                    <a href="<?= site_url('C_index/register') ?>" class="text-center text-white">Register a new membership</a>
-                </p>
             </div>
             <!-- /.card-body -->
         </div>
